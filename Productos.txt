@@ -1,0 +1,8 @@
+Gasolina|1,67
+Pan|0,45
+Chocolate|1
+Chocolate|1
+Natillas|3xx|1
+xx|2
+e|3
+e|3
