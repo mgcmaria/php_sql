@@ -1,0 +1,44 @@
+/* Siempre prevalece el más restrictivo, 
+ej: el header sobre el body */
+
+body{
+    /*Ocupamos el 100% de la pantalla */
+    width: 100vw; /* Vertical width */
+    height: 100vh; /* Vertical height */
+    /* Crear filas y columnas */
+    display: grid; 
+    /* Alto de las filas, como tenemos 3 le indicamos el valor de medida de cada una de ellas fr = frame*/
+    grid-template-rows: 60px 1fr 50px; 
+    /* Ancho de columnas*/
+    grid-template-columns: 25% 1fr;
+    /* Lo dividimos por areas y les damos un nombre*/
+    grid-template-areas: 
+        "zheader    zheader"
+        "znav       zsection"
+        "zfooter    zfooter"
+    ;
+    color: white;
+    
+}
+
+header{
+    /* Indicamos donde queremos que lo pinte, lo hemos indicamos en body*/
+    grid-area: zheader;
+    background-color: black;
+    color:yellow; 
+}
+
+nav{
+    grid-area: znav;
+    background-color: blue;
+}
+
+section{
+    grid-area: zsection;
+    background-color: green;
+}
+
+footer{
+    grid-area: zfooter;
+    background-color: brown;
+}

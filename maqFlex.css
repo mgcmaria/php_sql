@@ -1,0 +1,75 @@
+/*
+selector {
+    comandos_css: valor;
+}
+
+El selector de eqtiqueta es el nombre de la etiqueta
+*/
+
+/*Quitamos el margen que pone el navegador por defecto*/
+
+*{
+    margin: 0;
+}
+
+body{
+    width: 100vw; 
+    height: 100vh;
+    background-color:lightgoldenrodyellow;
+    color:blue;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 20px 40px 1fr 30px;
+    grid-template-areas: 
+        "zheader"   "znav"  "zsection"  "zfooter";
+}
+
+header{
+    grid-area: zheader;
+    background-color: black;
+}
+
+nav{
+    grid-area: znav;
+    background-color:dimgray;
+}
+
+section{
+    grid-area: zsection;
+    /* Queremos que los div están alineados en la misma fila */
+    /* height: 50%; */
+    background-color:lightskyblue;
+    font-size: 20px;
+    display: flex;
+    justify-content:space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+div{
+    width: 200px;
+    height: 200px;
+    background-color:slategray;
+    color:aliceblue;
+    padding: 20px;   
+    margin: 20px;
+    justify-content: center;   
+    align-items: center; 
+    font-size: 24px;
+}
+
+footer{
+    grid-area: zfooter;
+    background-color:black;
+}
+
+img{
+    height: 180px;
+    width: 180px;
+}
+
+p{
+    font-size: 15px;
+    color: darkslategrey;
+    text-align: center;
+}

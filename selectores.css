@@ -1,0 +1,35 @@
+/* Los selectores pueden ser de clase o únicos
+Clase --> class
+Unico --> id 
+El ID TIENE QUE SER UNICO*/
+
+div{
+    background-color:beige;
+}
+
+.verde{
+    background-color:darkolivegreen;
+    color: white;
+    font-size: 20px;
+    box-shadow: 2px 2px black;
+}
+
+#unico{
+    background-color:darkslateblue;
+    color:darkgray;
+    text-align: center;
+}
+
+/* Selector de familia 
+x >     y los hijos de X
+x y     los descendientes de X
+*/
+
+body>div>div{
+    font-size: 50px;
+    text-shadow: 2px 2px green;
+}
+
+div>p{
+    background-color:rgb(71, 67, 67);
+}

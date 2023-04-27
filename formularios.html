@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formularios</title>
+</head>
+<body>
+    
+    <form action="formularios.php" method="get">
+
+        <label for="nombre">Nombre</label><br>
+        <input type="text" name="nombre" id="nombre" value=""><br>
+        <!-- Condiciones no excluyentes -->
+        Coches
+        <input type="checkbox" name="mercedes" checked>Mercedes
+        <input type="checkbox" name="audi" >Audi
+        <input type="checkbox" name="seat" >Seat <br>
+        <br>
+        <!-- Condiciones excluyentes -->
+        Color de pelo
+        <input type="radio" name="pelo" value="Rubio">Rubio
+        <input type="radio" name="pelo" value="Moreno">Moreno
+        <input type="radio" name="pelo" value="Pelirrojo">Pelirrojo <br>
+        <br>
+        <!-- Textarea: multilínea-->
+        <label for="observaciones"></label>
+        <textarea name="observaciones" id="observaciones" cols="30" rows="10" placeholder="Observaciones"></textarea>
+        <br><br>
+
+        <!-- Lista de seleccion -->
+        <!-- En este caso no haría falta poner el value ya que lo que viaja es el name -->
+        <select name="nacionalidad" id="" title="nacionalidad">
+            <option value="Español">Española</option>
+            <option >Francesa</option>
+            <option >Inglesa</option>
+            <option >Belga</option>
+        </select>
+        <br><br>
+        <input type="submit" value="Enviar" >
+    </form>
+</body>
+</html>

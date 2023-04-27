@@ -1,0 +1,70 @@
+/* Siempre prevalece el más restrictivo, 
+ej: el header sobre el body */
+
+/*para ajustar los espacios a 0 en la página web*/
+*{
+    padding: 0;
+    margin: 0;
+}
+
+
+body{
+    /*Ocupamos el 100% de la pantalla */
+    width: 100vw; /* Vertical width */
+    height: 100vh; /* Vertical height */
+    /* Crear filas y columnas */
+    display: grid; 
+    /* Alto de las filas, como tenemos 3 le indicamos el valor de medida de cada una de ellas fr = frame*/
+    grid-template-rows: 60px 1fr 50px; 
+    /* Ancho de columnas*/
+    grid-template-columns: 20% 1fr;
+    /* Lo dividimos por areas y les damos un nombre*/
+    grid-template-areas: 
+        "zheader    zheader"
+        "znav       zsection"
+        "zfooter    zfooter"
+    ;    
+}
+
+header{
+    /* Indicamos donde queremos que lo pinte, lo hemos indicamos en body*/
+    grid-area: zheader;
+    background-color: grey;
+    color:midnightblue; 
+    padding: 10px;
+}
+
+nav{
+    grid-area: znav;
+    background-color:burlywood;
+    padding: 10px;
+}
+
+section{
+    grid-area: zsection;
+    background-color:beige;
+    padding: 10px;
+}
+
+footer{
+    grid-area: zfooter;
+    background-color:cadetblue;
+    padding: 10px;
+}
+
+a{
+    color:darkslategray;
+}
+
+img{
+    width: 20%;
+    height: 30%;
+}
+
+h2{
+    color:cornflowerblue;
+}
+
+h3{
+    color:darkslategray
+}

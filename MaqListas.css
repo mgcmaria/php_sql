@@ -1,0 +1,23 @@
+th{
+    background-color:cadetblue;
+    color:white;
+}
+
+td{
+    background-color:beige;
+}
+
+/* Cuando pasamos el ratón por encima */
+td:hover{
+    background-color:darkgrey;
+    color:darkslateblue;
+}
+
+.div1{
+    font-size: 20px;
+}
+
+.div1:hover{
+    background-color:cadetblue;
+    cursor: grab;
+}

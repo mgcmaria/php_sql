@@ -1,0 +1,65 @@
+/*maquetación tipo 2*/
+
+/*para ajustar los espacios a 0*/
+*{
+    padding: 0;
+    margin: 0;
+}
+
+body{
+     /*Ocupamos el 100% de la pantalla */
+     width: 100vw; /* Vertical width */
+     height: 100vh; /* Vertical height */
+     /* Crear filas y columnas */
+     display: grid; 
+     /* Alto de las filas, como tenemos 3 le indicamos 
+     el valor de medida de cada una de ellas fr = frame,
+     con esto el alto o ancho lo calcula el navegador*/
+     grid-template-rows: 100px 1fr 50px; 
+     /* Ancho de columnas*/
+     grid-template-columns: 25% 1fr 20%;
+     /* Lo dividimos por filas y les damos un nombre*/
+     grid-template-areas: 
+         "zheader    zheader    zheader"
+         "znav       zsection   zaside"
+         "zfooter    zfooter    zfooter"
+     ;
+     color: white;
+}
+
+header{
+    /* Indicamos donde queremos que lo pinte, 
+    lo hemos indicamos en body*/
+    grid-area: zheader;
+    background-color: black;
+    color:yellow; 
+    padding: 10px;
+}
+
+nav{
+    grid-area: znav;
+    background-color: blue;
+    padding: 10px;
+}
+
+section{
+    grid-area: zsection;
+    background-color: green;
+    padding: 10px;
+}
+
+aside{
+    grid-area: zaside;
+    background-color:burlywood;
+    padding: 10px;
+}
+
+footer{
+    grid-area: zfooter;
+    background-color: brown;
+    padding: 10px;
+}
+
+div{
+    margin: 10px;
+}

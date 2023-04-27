@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formularios</title>
+    <link rel="stylesheet" type="text/css" href="miPhp.css">
+</head>
+<body>
+
+    <!-- El metodo indica como envío de los datos 
+    (get -> en la url)
+    (post ..> oculto) --> 
+
+    <form action="formulario.php" method="post">
+        Nombre <input type="text" name="nombre" id="nombre" value="" placeholder="Nombre">
+        <br>
+        Apellidos <input type="text" name="apellidos" id="apellidos" value="" placeholder="Apellidos">
+        <br>
+        Edad <input type="number" name="edad" id="edad" value="" placeholder="Edad">
+        <br>
+        <br>
+        Número 1 <input type="number" name="n1" id="n1" value="" placeholder="Número 1">
+        <br>
+        Número 2 <input type="number" name="n2" id="n2" value="" placeholder="Número 2">
+        <br>
+        <br>
+        <input type="submit" value="Enviar">
+    </form>   
+        
+</body>
+</html>
