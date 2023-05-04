@@ -110,6 +110,7 @@
     //tabla html
 
     $html = "<table border ='1'>";
+    
     //Metemos las cabeceras
     $html.= "<tr>";
         $html.= "<th>Matricula</th>";

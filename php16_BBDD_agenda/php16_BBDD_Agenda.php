@@ -22,7 +22,7 @@
     //Covierte los datos de la consulta en un array
     $datos_array = mysqli_fetch_all($rs);
 
-    //Mostramos los datos del Array
+    //Mostramos los datos del Array en bruto
     for($i=0; $i<count($datos_array); $i++){
         echo "<br>" . $datos_array[$i][1] . " - " 
                     . $datos_array[$i][2] . " - " 
