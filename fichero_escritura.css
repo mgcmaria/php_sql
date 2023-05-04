@@ -1,0 +1,29 @@
+body{
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 60px 1fr 40px;
+    grid-template-areas: 
+        "zheader"
+        "zsection"
+        "zfooter";
+}
+
+header{
+    grid-area: zheader;
+    background-color: black;
+    color: white;
+    text-align: center;
+}
+
+section{
+    grid-area: zsection;
+    background-color: lightgreen;
+    padding: 20px;
+}
+
+footer{
+    grid-area: zfooter;
+    background-color: black;
+}
