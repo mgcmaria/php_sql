@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
--- http://www.phpmyadmin.net
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-06-2017 a las 11:22:17
--- Versión del servidor: 10.1.8-MariaDB
--- Versión de PHP: 5.6.14
+-- Tiempo de generación: 05-05-2023 a las 20:01:35
+-- Versión del servidor: 10.4.28-MariaDB
+-- Versión de PHP: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -17,14 +18,14 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `gestion_pedidos`
+-- Base de datos: `bd_pedidos`
 --
 
 -- DELIMITER $$
 -- --
 -- -- Funciones
 -- --
--- CREATE DEFINER=`root`@`localhost` FUNCTION `Gracias` (`cadena` CHAR(20)) RETURNS CHAR(50) CHARSET utf8 COLLATE utf8_spanish_ci RETURN CONCAT('Muchas Gracias ', cadena,'!')$$
+-- CREATE DEFINER=`root`@`localhost` FUNCTION `Gracias` (`cadena` CHAR(20)) RETURNS CHAR(50) CHARSET utf8 COLLATE utf8_spanish_ci  RETURN CONCAT('Muchas Gracias ', cadena,'!')$$
 
 -- DELIMITER ;
 
@@ -41,8 +42,8 @@ CREATE TABLE `clientes` (
   `cli_poblacion` varchar(20) DEFAULT NULL,
   `cli_telefono` varchar(16) DEFAULT NULL,
   `cli_responsable` varchar(30) DEFAULT NULL,
-  `cli_historial` text
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `cli_historial` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Volcado de datos para la tabla `clientes`
@@ -102,7 +103,7 @@ CREATE TABLE `pedidos` (
   `ped_descuento` int(2) DEFAULT NULL,
   `ped_forma_pago` varchar(20) DEFAULT NULL,
   `ped_enviado` tinyint(1) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Volcado de datos para la tabla `pedidos`
@@ -153,7 +154,7 @@ INSERT INTO `pedidos` (`ped_numero`, `ped_cli_codigo`, `ped_fecha`, `ped_descuen
 
 CREATE TABLE `pedidos_detalle` (
   `pedd_ped_numero` int(11) NOT NULL,
-  `pedd_prod_codigo` varchar(4) CHARACTER SET utf8 NOT NULL,
+  `pedd_prod_codigo` varchar(4) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `pedd_unidades` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_spanish_ci;
 
@@ -232,61 +233,81 @@ CREATE TABLE `productos` (
   `prod_fecha` date DEFAULT NULL,
   `prod_importado` tinyint(1) DEFAULT NULL,
   `prod_pais_origen` varchar(30) DEFAULT NULL,
-  `prod_foto` mediumblob
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `prod_foto` mediumblob DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Volcado de datos para la tabla `productos`
 --
 
 INSERT INTO `productos` (`prod_codigo`, `prod_seccion`, `prod_nombre`, `prod_precio`, `prod_fecha`, `prod_importado`, `prod_pais_origen`, `prod_foto`) VALUES
-('AR01', 'FERRETERÍA', 'DESTORNILLADOR', '7.00', '2000-10-22', 0, 'ESPAÑA', NULL),
-('AR02', 'CONFECCIÓN', 'TRAJE CABALLERO', '284.00', '2002-03-11', 1, 'ITALIA', NULL),
-('AR03', 'JUGUETERÍA', 'COCHE TELEDIRIGIDO', '159.00', '2002-05-26', 1, 'MARRUECOS', NULL),
-('AR04', 'DEPORTES', 'RAQUETA TENIS', '95.00', '2000-03-20', 1, 'USA', NULL),
-('AR06', 'DEPORTES', 'MANCUERNAS', '60.00', '2000-09-13', 1, 'USA', NULL),
-('AR07', 'CONFECCIÓN', 'SERRUCHO', '30.00', '2001-03-23', 1, 'FRANCIA', NULL),
-('AR08', 'JUGUETERÍA', 'CORREPASILLOS', '103.00', '2000-04-11', 1, 'JAPÓN', NULL),
-('AR09', 'CONFECCIÓN', 'PANTALÓN SEÑORA', '174.00', '2000-01-10', 1, 'MARRUECOS', NULL),
-('AR10', 'JUGUETERÍA', 'CONSOLA VIDEO', '442.00', '2002-09-24', 1, 'USA', NULL),
-('AR11', 'CERÁMICA', 'TUBOS', '168.00', '2000-02-04', 1, 'CHINA', NULL),
-('AR12', 'FERRETERÍA', 'LLAVE INGLESA', '24.00', '2001-05-23', 1, 'USA', NULL),
-('AR13', 'CONFECCIÓN', 'CAMISA CABALLERO', '67.00', '2002-08-11', 0, 'ESPAÑA', NULL),
-('AR14', 'JUGUETERÍA', 'TREN ELÉCTRICO', '1505.00', '2001-07-03', 1, 'JAPÓN', NULL),
-('AR15', 'CERÁMICA', 'PLATO DECORATIVO', '54.00', '2000-06-07', 1, 'CHINA', NULL),
-('AR16', 'FERRETERÍA', 'ALICATES', '6.00', '2000-04-17', 1, 'ITALIA', NULL),
-('AR17', 'JUGUETERÍA', 'MUÑECA ANDADORA', '105.00', '2001-01-04', 0, 'ESPAÑA', NULL),
-('AR18', 'DEPORTES', 'PISTOLA OLÍMPICA', '46.00', '2001-02-02', 1, 'SUECIA', NULL),
-('AR19', 'CONFECCIÓN', 'BLUSA SRA.', '101.00', '2000-03-18', 1, 'CHINA', NULL),
-('AR20', 'CERÁMICA', 'JUEGO DE TE', '43.00', '2001-01-15', 1, 'CHINA', NULL),
-('AR21', 'CERÁMICA', 'CENICERO', '19.00', '2001-07-02', 1, 'JAPÓN', NULL),
-('AR22', 'FERRETERÍA', 'MARTILLO', '11.00', '2001-09-04', 0, 'ESPAÑA', NULL),
-('AR23', 'CONFECCIÓN', 'CAZADORA PIEL', '522.00', '2001-07-10', 1, 'ITALIA', NULL),
-('AR24', 'DEPORTES', 'BALÓN RUGBY', '111.00', '2000-11-11', 1, 'USA', NULL),
-('AR25', 'DEPORTES', 'BALÓN BALONCESTO', '75.00', '2001-06-25', 1, 'JAPÓN', NULL),
-('AR26', 'JUGUETERÍA', 'FUERTE DE SOLDADOS', '143.00', '2000-11-25', 1, 'JAPÓN', NULL),
-('AR27', 'CONFECCIÓN', 'ABRIGO CABALLERO', '500000.00', '2002-04-05', 1, 'ITALIA', NULL),
-('AR28', 'DEPORTES', 'BALÓN FÚTBOL', '43.00', '2002-07-04', 0, 'ESPAÑA', NULL),
-('AR29', 'CONFECCIÓN', 'ABRIGO SRA', '360.00', '2001-05-03', 1, 'MARRUECOS', NULL),
-('AR30', 'FERRETERÍA', 'DESTORNILLADOR', '9.00', '2002-02-20', 1, 'FRANCIA', NULL),
-('AR31', 'JUGUETERÍA', 'PISTOLA CON SONIDOS', '57.00', '2001-04-15', 0, 'ESPAÑA', NULL),
-('AR32', 'DEPORTES', 'CRONÓMETRO', '439.00', '2002-01-03', 1, 'USA', NULL),
-('AR33', 'CERÁMICA', 'MACETA', '29.00', '2000-02-23', 0, 'ESPAÑA', NULL),
-('AR34', 'OFICINA', 'PIE DE LÁMPARA', '39.00', '2001-05-27', 1, 'TURQUÍA', NULL),
-('AR35', 'FERRETERÍA', 'LIMA GRANDE', '22.00', '2002-08-10', 0, 'ESPAÑA', NULL),
-('AR36', 'FERRETERÍA', 'JUEGO DE BROCAS', '15.00', '2002-07-04', 1, 'TAIWÁN', NULL),
-('AR37', 'CONFECCIÓN', 'CINTURÓN DE PIEL', '4.00', '2002-05-12', 0, 'ESPAÑA', NULL),
-('AR38', 'DEPORTES', 'CAÑA DE PESCA', '270.00', '2000-02-14', 1, 'USA', NULL),
-('AR39', 'CERÁMICA', 'JARRA CHINA', '127.00', '2002-09-02', 1, 'CHINA', NULL),
-('AR40', 'DEPORTES', 'BOTA ALPINISMO', '144.00', '2002-05-05', 0, 'ESPAÑA', NULL),
-('AR41', 'DEPORTES', 'PALAS DE PING PONG', '21.00', '2002-02-02', 0, 'ESPAÑA', NULL),
-('AR42', 'DEPORTES', 'Camiseta Fitness', '55.00', '2001-05-15', 0, 'ESPAÑA', NULL),
-('ar43', 'DEPORTES', 'Camiseta basket', '40.00', '2016-05-01', 0, 'ESPAÑA', NULL),
-('jrt1', 'Informática', 'Impresora', '200.00', '2016-09-10', 1, 'China', NULL),
-('jrt3', 'Informática', 'Teclado', '22.30', '0018-03-09', 1, 'China', NULL),
-('jrt4', 'Informática', 'Tec4', '22.60', '2016-04-07', 1, 'China', NULL),
-('jrt5', 'Informática', 'Tec5', '14.30', '2016-09-12', 1, 'China', NULL),
-('jrta', 'Informática', 'PC', '2000.00', '2016-04-07', 0, 'España', NULL);
+('AR01', 'FERRETERÍA', 'DESTORNILLADOR', 7.00, '2000-10-22', 0, 'ESPAÑA', NULL),
+('AR02', 'CONFECCIÓN', 'TRAJE CABALLERO', 284.00, '2002-03-11', 1, 'ITALIA', NULL),
+('AR03', 'JUGUETERÍA', 'COCHE TELEDIRIGIDO', 159.00, '2002-05-26', 1, 'MARRUECOS', NULL),
+('AR04', 'DEPORTES', 'RAQUETA TENIS', 95.00, '2000-03-20', 1, 'USA', NULL),
+('AR06', 'DEPORTES', 'MANCUERNAS', 60.00, '2000-09-13', 1, 'USA', NULL),
+('AR07', 'CONFECCIÓN', 'SERRUCHO', 30.00, '2001-03-23', 1, 'FRANCIA', NULL),
+('AR08', 'JUGUETERÍA', 'CORREPASILLOS', 103.00, '2000-04-11', 1, 'JAPÓN', NULL),
+('AR09', 'CONFECCIÓN', 'PANTALÓN SEÑORA', 174.00, '2000-01-10', 1, 'MARRUECOS', NULL),
+('AR10', 'JUGUETERÍA', 'CONSOLA VIDEO', 442.00, '2002-09-24', 1, 'USA', NULL),
+('AR11', 'CERÁMICA', 'TUBOS', 168.00, '2000-02-04', 1, 'CHINA', NULL),
+('AR12', 'FERRETERÍA', 'LLAVE INGLESA', 24.00, '2001-05-23', 1, 'USA', NULL),
+('AR13', 'CONFECCIÓN', 'CAMISA CABALLERO', 67.00, '2002-08-11', 0, 'ESPAÑA', NULL),
+('AR14', 'JUGUETERÍA', 'TREN ELÉCTRICO', 1505.00, '2001-07-03', 1, 'JAPÓN', NULL),
+('AR15', 'CERÁMICA', 'PLATO DECORATIVO', 54.00, '2000-06-07', 1, 'CHINA', NULL),
+('AR16', 'FERRETERÍA', 'ALICATES', 6.00, '2000-04-17', 1, 'ITALIA', NULL),
+('AR17', 'JUGUETERÍA', 'MUÑECA ANDADORA', 105.00, '2001-01-04', 0, 'ESPAÑA', NULL),
+('AR18', 'DEPORTES', 'PISTOLA OLÍMPICA', 46.00, '2001-02-02', 1, 'SUECIA', NULL),
+('AR19', 'CONFECCIÓN', 'BLUSA SRA.', 101.00, '2000-03-18', 1, 'CHINA', NULL),
+('AR20', 'CERÁMICA', 'JUEGO DE TE', 43.00, '2001-01-15', 1, 'CHINA', NULL),
+('AR21', 'CERÁMICA', 'CENICERO', 19.00, '2001-07-02', 1, 'JAPÓN', NULL),
+('AR22', 'FERRETERÍA', 'MARTILLO', 11.00, '2001-09-04', 0, 'ESPAÑA', NULL),
+('AR23', 'CONFECCIÓN', 'CAZADORA PIEL', 522.00, '2001-07-10', 1, 'ITALIA', NULL),
+('AR24', 'DEPORTES', 'BALÓN RUGBY', 111.00, '2000-11-11', 1, 'USA', NULL),
+('AR25', 'DEPORTES', 'BALÓN BALONCESTO', 75.00, '2001-06-25', 1, 'JAPÓN', NULL),
+('AR26', 'JUGUETERÍA', 'FUERTE DE SOLDADOS', 143.00, '2000-11-25', 1, 'JAPÓN', NULL),
+('AR27', 'CONFECCIÓN', 'ABRIGO CABALLERO', 500000.00, '2002-04-05', 1, 'ITALIA', NULL),
+('AR28', 'DEPORTES', 'BALÓN FÚTBOL', 43.00, '2002-07-04', 0, 'ESPAÑA', NULL),
+('AR29', 'CONFECCIÓN', 'ABRIGO SRA', 360.00, '2001-05-03', 1, 'MARRUECOS', NULL),
+('AR30', 'FERRETERÍA', 'DESTORNILLADOR', 9.00, '2002-02-20', 1, 'FRANCIA', NULL),
+('AR31', 'JUGUETERÍA', 'PISTOLA CON SONIDOS', 57.00, '2001-04-15', 0, 'ESPAÑA', NULL),
+('AR32', 'DEPORTES', 'CRONÓMETRO', 439.00, '2002-01-03', 1, 'USA', NULL),
+('AR33', 'CERÁMICA', 'MACETA', 29.00, '2000-02-23', 0, 'ESPAÑA', NULL),
+('AR34', 'OFICINA', 'PIE DE LÁMPARA', 39.00, '2001-05-27', 1, 'TURQUÍA', NULL),
+('AR35', 'FERRETERÍA', 'LIMA GRANDE', 22.00, '2002-08-10', 0, 'ESPAÑA', NULL),
+('AR36', 'FERRETERÍA', 'JUEGO DE BROCAS', 15.00, '2002-07-04', 1, 'TAIWÁN', NULL),
+('AR37', 'CONFECCIÓN', 'CINTURÓN DE PIEL', 4.00, '2002-05-12', 0, 'ESPAÑA', NULL),
+('AR38', 'DEPORTES', 'CAÑA DE PESCA', 270.00, '2000-02-14', 1, 'USA', NULL),
+('AR39', 'CERÁMICA', 'JARRA CHINA', 127.00, '2002-09-02', 1, 'CHINA', NULL),
+('AR40', 'DEPORTES', 'BOTA ALPINISMO', 144.00, '2002-05-05', 0, 'ESPAÑA', NULL),
+('AR41', 'DEPORTES', 'PALAS DE PING PONG', 21.00, '2002-02-02', 0, 'ESPAÑA', NULL),
+('AR42', 'DEPORTES', 'Camiseta Fitness', 55.00, '2001-05-15', 0, 'ESPAÑA', NULL),
+('ar43', 'DEPORTES', 'Camiseta basket', 40.00, '2016-05-01', 0, 'ESPAÑA', NULL),
+('jrt1', 'Informática', 'Impresora', 200.00, '2016-09-10', 1, 'China', NULL),
+('jrt3', 'Informática', 'Teclado', 22.30, '0018-03-09', 1, 'China', NULL),
+('jrt4', 'Informática', 'Tec4', 22.60, '2016-04-07', 1, 'China', NULL),
+('jrt5', 'Informática', 'Tec5', 14.30, '2016-09-12', 1, 'China', NULL),
+('jrta', 'Informática', 'PC', 2000.00, '2016-04-07', 0, 'España', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `usuarios`
+--
+
+CREATE TABLE `usuarios` (
+  `usu_id` int(11) NOT NULL,
+  `usu_alias` varchar(50) NOT NULL,
+  `usu_password` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `usuarios`
+--
+
+INSERT INTO `usuarios` (`usu_id`, `usu_alias`, `usu_password`) VALUES
+(1, 'admin', '21232f297a57a5a743894a0e4a801fc3'),
+(2, 'user', 'ee11cbb19052e40b07aac0ca060c23ee');
 
 --
 -- Índices para tablas volcadas
@@ -319,6 +340,22 @@ ALTER TABLE `productos`
   ADD PRIMARY KEY (`prod_codigo`);
 
 --
+-- Indices de la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  ADD PRIMARY KEY (`usu_id`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  MODIFY `usu_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- Restricciones para tablas volcadas
 --
 
@@ -334,6 +371,7 @@ ALTER TABLE `pedidos`
 ALTER TABLE `pedidos_detalle`
   ADD CONSTRAINT `pedidos_detalle_ibfk_1` FOREIGN KEY (`pedd_ped_numero`) REFERENCES `pedidos` (`ped_numero`) ON DELETE NO ACTION ON UPDATE CASCADE,
   ADD CONSTRAINT `pedidos_detalle_ibfk_2` FOREIGN KEY (`pedd_prod_codigo`) REFERENCES `productos` (`prod_codigo`) ON DELETE NO ACTION ON UPDATE CASCADE;
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
