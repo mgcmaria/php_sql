@@ -1,0 +1,71 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+body{
+    width: 100vw;
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr; /*Frame es el espacio restante */
+    grid-template-rows: 50px 1fr 40px;
+    grid-template-areas: 
+    "zheader" 
+    "zsection" 
+    "zfooter";
+}
+
+header{
+    grid-area: zheader;
+    background-color: gray;
+    color: beige;
+    display: flex;
+    /* Alineacion horizontal */
+    justify-content: center;
+    /* Alineacion vertical */
+    align-items: center;
+    /* La sepación del texto con respecto a su contenedor padding*/
+    padding-right: 50px;
+}
+
+section{
+    grid-area: zsection;
+    display: flex;
+    /* Si sobrepasa el ancho de línea con wrap lo solucionamos */
+    flex-wrap: wrap;
+    justify-content: space-evenly; /* Reparte el espacio entre los elementos */
+}
+
+/* Seleccionamos todos los divs que son hijos (>) directos del section */
+section > div {
+    width: 24%;
+    border: 1px solid gray;
+    text-align: center;
+    margin-top: 5px;
+}
+
+.nombre{
+    font-size: 18px;
+    font-weight: bold;
+    color: green;
+}
+
+.precio{
+    font-size: 15px;
+    font-weight: bold;
+    color:darkslategray;
+}
+
+footer{
+    grid-area: zfooter;
+    background-color: gray;
+    color: beige;
+    display: flex;
+    /* Alineacion horizontal */
+    justify-content: right;
+    /* Alineacion vertical */
+    align-items: center;
+    /* La sepación del texto con respecto a su contenedor padding*/
+    padding-right: 50px;
+}
